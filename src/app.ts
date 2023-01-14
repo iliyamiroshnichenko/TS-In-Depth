@@ -55,18 +55,20 @@ logBookTitles(jsBooks);
 // Task 02.01.8
 const getBookAuthorByIndex = (bookId: number): myTuple => {
     const { title, author } = allBooks.find(({ id }) => bookId === id);
-    return [title, author];
+    const res: myTuple  = [title, author];
+    return res;
 };
 console.log(getBookAuthorByIndex(3));
-// Task 02.01.10 ???bigint???
+// Task 02.01.10
 const calcTotalPages = () => {
     const libs = [  { lib: 'libName1', books: 1_000_000_000, avgPagesPerBook: 250 },
         { lib: 'libName2', books: 5_000_000_000, avgPagesPerBook: 300 },
         { lib: 'libName3', books: 3_000_000_000, avgPagesPerBook: 280 }];
 
     const totalPages = libs.reduce((acc, { books, avgPagesPerBook }) => {
-        return acc + books * avgPagesPerBook ;
-    }, 0);
+        return acc + BigInt(books * avgPagesPerBook) ;
+    }, BigInt(0));
+
     return totalPages;
 };
 
