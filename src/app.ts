@@ -39,9 +39,8 @@ const getAllBooks = (): Book[] => {
 // Task 02.01.2
 const logFirstAvailable = (books: Book[]) => {
     console.log('Количество книг в массиве ', books.length);
-    const [firstAvailableBook] = books.filter(({ available }) => available);
-    const {title} = firstAvailableBook;
-    console.log('Название первой доступной книги ', title);
+    const firstAvailableTitle = books.find(({ available }) => available)?.title || '';
+    console.log('Название первой доступной книги ', firstAvailableTitle);
 };
 // Task 02.01.3
 const allBooks = getAllBooks();
@@ -60,16 +59,12 @@ const getBookAuthorByIndex = (bookId: number): myTuple => {
 };
 console.log(getBookAuthorByIndex(3));
 // Task 02.01.10
-const calcTotalPages = () => {
+const calcTotalPages = (): bigint => {
     const libs = [  { lib: 'libName1', books: 1_000_000_000, avgPagesPerBook: 250 },
         { lib: 'libName2', books: 5_000_000_000, avgPagesPerBook: 300 },
         { lib: 'libName3', books: 3_000_000_000, avgPagesPerBook: 280 }];
 
-    const totalPages = libs.reduce((acc, { books, avgPagesPerBook }) => {
-        return acc + BigInt(books * avgPagesPerBook) ;
-    }, BigInt(0));
-
-    return totalPages;
+    return libs.reduce((acc, { books, avgPagesPerBook }) => acc + BigInt(books * avgPagesPerBook), BigInt(0));
 };
 
 console.log(calcTotalPages());
