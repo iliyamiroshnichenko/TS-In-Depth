@@ -37,7 +37,7 @@ const getAllBooks = (): readonly Book[] => {
 };
 
 // Task 02.01.2
-const logFirstAvailable = (books: readonly Book[]) => {
+const logFirstAvailable = (books: readonly Book[] = getAllBooks()) => {
     console.log('Количество книг в массиве ', books.length);
     const firstAvailableTitle = books.find(({ available }) => available)?.title || '';
     console.log('Название первой доступной книги ', firstAvailableTitle);
@@ -46,11 +46,11 @@ const logFirstAvailable = (books: readonly Book[]) => {
 const allBooks = getAllBooks();
 // logFirstAvailable(allBooks);
 // Task 02.01.6
-const getBookTitlesByCategory = (selectedCategory: Category): Array<string> => allBooks.filter(({ category }) => category === selectedCategory).map(({ title }) => title);
+const getBookTitlesByCategory = (selectedCategory: Category = Category.JAVASCRIPT): Array<string> => allBooks.filter(({ category }) => category === selectedCategory).map(({ title }) => title);
 // Task 02.01.7
 const logBookTitles = (titles: string[]): void => console.log(titles);
 const jsBooks = getBookTitlesByCategory(Category.JAVASCRIPT);
-logBookTitles(jsBooks);
+// logBookTitles(jsBooks);
 // Task 02.01.8
 const getBookAuthorByIndex = (bookId: number): myTuple => {
     const { title, author } = allBooks.find(({ id }) => bookId === id);
@@ -73,9 +73,35 @@ const calcTotalPages = (): bigint => {
 const createCustomerID = (name: string, id: number): string => `${id}-${name}`;
 // Task 03.01.02
 let myID: string = createCustomerID('Ann', 10);
-console.log(myID);
+// console.log(myID);
 // Task 03.01.03
 let idGenerator: (name: string, id: number) => string;
 idGenerator = (name: string, id: number) => `${id}-${name}`;
 idGenerator = createCustomerID;
-console.log(idGenerator('Ann', 10));
+// console.log(idGenerator('Ann', 10));
+
+// Task 03.02.01
+const createCustomer = (name: string, age?: number, city?: string): void => {
+    console.log(`Customer name ${name}`);
+    if(age) console.log(`Customer age ${age}`);
+    if(city) console.log(`Customer city ${city}`);
+};
+// createCustomer('Illia');
+// createCustomer('Illia', 34);
+// createCustomer('Illia', 34, 'Slovyansk');
+
+// console.log(getBookTitlesByCategory());
+// logFirstAvailable();
+// Task 03.02.04
+const getBookByID = (idToFind: number): Book => {
+    const books = getAllBooks();
+    return books.find(({id}) => id === idToFind);
+};
+// console.log(getBookByID(1));
+// Task 03.02.05
+const сheckoutBooks = (customer: string, ...bookIDs: number[]): string[] => {
+    console.log(`Customer ${customer}`);
+    return  bookIDs.map(getBookByID).filter(({available}) => available).map(({title}) => title);
+};
+const myBooks = сheckoutBooks('Ann', 1, 2, 4);
+console.log(myBooks);
