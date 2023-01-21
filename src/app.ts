@@ -1,3 +1,4 @@
+/* eslint-disable no-redeclare */
 showHello('greeting', 'TypeScript');
 
 function showHello(divName: string, name: string) {
@@ -104,4 +105,27 @@ const сheckoutBooks = (customer: string, ...bookIDs: number[]): string[] => {
     return  bookIDs.map(getBookByID).filter(({available}) => available).map(({title}) => title);
 };
 const myBooks = сheckoutBooks('Ann', 1, 2, 4);
-console.log(myBooks);
+// console.log(myBooks);
+
+// Task 03.03
+function getTitles (author: string): string[];
+function getTitles(available: boolean): string[];
+function getTitles(id: number, available: boolean): string[];
+function getTitles(...args: [string | boolean] | [number, boolean]): string[] {
+    const books = getAllBooks();
+    if (args.length === 1) {
+        const [arg] = args;
+        if (typeof arg === 'string') {
+            return books.filter(({author}) => author === arg).map(({title}) => title);
+        } else if (typeof arg === 'boolean') {
+            return books.filter(({available}) => available === arg).map(({title}) => title);
+        }
+
+    } else if (args.length === 2) {
+        const [id, available] = args;
+        if (typeof id === 'number' && typeof available === 'boolean') {
+            return books.filter(book => book.available === available && book.id === id).map(({title}) => title);
+        }
+    }
+};
+console.log(getTitles('Andrea Chiarelli'));
