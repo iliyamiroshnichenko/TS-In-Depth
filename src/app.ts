@@ -26,8 +26,8 @@ type Book = {
 
 type myTuple = [title: string, author: string];
 
-const getAllBooks = (): Book[] => {
-    const books =	[
+const getAllBooks = (): readonly Book[] => {
+    const books =	<const>[
         { id: 1, title: 'Refactoring JavaScript', author: 'Evan Burchard', available: true, category: Category.JAVASCRIPT},
         { id: 2, title: 'JavaScript Testing', author: 'Liang Yuxian Eugene', available: false, category: Category.JAVASCRIPT },
         { id: 3, title: 'CSS Secrets', author: 'Lea Verou', available: true , category: Category.CSS},
@@ -37,14 +37,14 @@ const getAllBooks = (): Book[] => {
 };
 
 // Task 02.01.2
-const logFirstAvailable = (books: Book[]) => {
+const logFirstAvailable = (books: readonly Book[]) => {
     console.log('Количество книг в массиве ', books.length);
     const firstAvailableTitle = books.find(({ available }) => available)?.title || '';
     console.log('Название первой доступной книги ', firstAvailableTitle);
 };
 // Task 02.01.3
 const allBooks = getAllBooks();
-logFirstAvailable(allBooks);
+// logFirstAvailable(allBooks);
 // Task 02.01.6
 const getBookTitlesByCategory = (selectedCategory: Category): Array<string> => allBooks.filter(({ category }) => category === selectedCategory).map(({ title }) => title);
 // Task 02.01.7
@@ -57,14 +57,25 @@ const getBookAuthorByIndex = (bookId: number): myTuple => {
     const res: myTuple  = [title, author];
     return res;
 };
-console.log(getBookAuthorByIndex(3));
+// console.log(getBookAuthorByIndex(3));
 // Task 02.01.10
 const calcTotalPages = (): bigint => {
-    const libs = [  { lib: 'libName1', books: 1_000_000_000, avgPagesPerBook: 250 },
+    const libs = <const>[  { lib: 'libName1', books: 1_000_000_000, avgPagesPerBook: 250 },
         { lib: 'libName2', books: 5_000_000_000, avgPagesPerBook: 300 },
         { lib: 'libName3', books: 3_000_000_000, avgPagesPerBook: 280 }];
 
     return libs.reduce((acc, { books, avgPagesPerBook }) => acc + BigInt(books * avgPagesPerBook), BigInt(0));
 };
 
-console.log(calcTotalPages());
+// console.log(calcTotalPages());
+
+// Task 03.01.01
+const createCustomerID = (name: string, id: number): string => `${id}-${name}`;
+// Task 03.01.02
+let myID: string = createCustomerID('Ann', 10);
+console.log(myID);
+// Task 03.01.03
+let idGenerator: (name: string, id: number) => string;
+idGenerator = (name: string, id: number) => `${id}-${name}`;
+idGenerator = createCustomerID;
+console.log(idGenerator('Ann', 10));
