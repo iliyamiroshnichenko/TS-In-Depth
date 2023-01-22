@@ -17,18 +17,30 @@ enum Category {
     ANGULAR = 'Angular'
 }
 // Task 02.01.1, 02.01.5
-type Book = {
+// type Book = {
+//     id: number;
+//     title: string;
+//     author: string;
+//     available: boolean;
+//     category: Category;
+// };
+interface Book {
     id: number;
     title: string;
     author: string;
     available: boolean;
     category: Category;
+    pages?: number;
+    // markDamaged?: (reason: string) => void;
+    markDamaged?: DamageLogger;
+
 };
+
 
 type myTuple = [title: string, author: string];
 
 const getAllBooks = (): readonly Book[] => {
-    const books =	<const>[
+    const books: readonly Book[] =	<const>[
         { id: 1, title: 'Refactoring JavaScript', author: 'Evan Burchard', available: true, category: Category.JAVASCRIPT},
         { id: 2, title: 'JavaScript Testing', author: 'Liang Yuxian Eugene', available: false, category: Category.JAVASCRIPT },
         { id: 3, title: 'CSS Secrets', author: 'Lea Verou', available: true , category: Category.CSS},
@@ -94,7 +106,7 @@ const createCustomer = (name: string, age?: number, city?: string): void => {
 // console.log(getBookTitlesByCategory());
 // logFirstAvailable();
 // Task 03.02.04
-const getBookByID = (idToFind: number): Book => {
+const getBookByID = (idToFind: Book['id']): Book | undefined => {
     const books = getAllBooks();
     return books.find(({id}) => id === idToFind);
 };
@@ -104,7 +116,7 @@ const сheckoutBooks = (customer: string, ...bookIDs: number[]): string[] => {
     console.log(`Customer ${customer}`);
     return  bookIDs.map(getBookByID).filter(({available}) => available).map(({title}) => title);
 };
-const myBooks = сheckoutBooks('Ann', 1, 2, 4);
+// const myBooks = сheckoutBooks('Ann', 1, 2, 4);
 // console.log(myBooks);
 
 // Task 03.03
@@ -128,4 +140,80 @@ function getTitles(...args: [string | boolean] | [number, boolean]): string[] {
         }
     }
 };
-console.log(getTitles('Andrea Chiarelli'));
+// console.log(getTitles('Andrea Chiarelli'));
+
+// Task 03.04
+function assertStringValue (value: any): asserts value is string  {
+    if (typeof value !== 'string') {
+        throw new Error('value should have been a string');
+    }
+};
+
+const bookTitleTransform = (title: any): string => {
+    assertStringValue(title);
+    return [...title].reverse().join('');
+};
+
+// console.log(bookTitleTransform('Typescript'));
+// console.log(bookTitleTransform(42));
+
+// Task 04.01
+
+const printBook = (book: Book): void => {
+    console.log(`${book.title} by ${book.author}`);
+};
+
+const myBook: Book= {
+    id: 5,
+    title: 'Colors, Backgrounds, and Gradients',
+    author: 'Eric A. Meyer',
+    available: true,
+    category: Category.CSS,
+    pages: 200,
+    markDamaged: (reason: string): void => {
+        console.log(`Damaged: ${reason}`);
+    }
+
+};
+
+// printBook(myBook);
+// myBook.markDamaged('missing back cover');
+
+// Task 04.02
+
+interface DamageLogger {
+    (reason: string): void;
+}
+
+const logDamage: DamageLogger = (reason: string): void => {
+    console.log(`Damaged: ${reason}`);
+};
+// logDamage('missing back cover');
+
+// Task 04.03
+interface Person {
+    name: string;
+    email: string;
+}
+
+interface Author extends Person {
+    numBooksPublished: number;
+}
+
+interface Librarian extends Person {
+    department: string;
+    assistCustomer: (custName: string, bookTitle: string) => void;
+}
+
+const favoriteAuthor: Author = {
+    name: 'Illia',
+    email: 'illiaExample@.com',
+    numBooksPublished: 1
+};
+
+const favoriteLibrarian: Librarian = {
+    name: 'Marina',
+    email: 'marinaExample@.com',
+    department: 'Classical',
+    assistCustomer: null,
+};
