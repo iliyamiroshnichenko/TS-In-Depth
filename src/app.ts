@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-redeclare */
 showHello('greeting', 'TypeScript');
 
@@ -217,3 +218,94 @@ const favoriteLibrarian: Librarian = {
     department: 'Classical',
     assistCustomer: null,
 };
+
+// Task 04.04
+const offer: any = {
+    book: {
+        title: 'Essential TypeScript',
+    },
+};
+// console.log(offer.magazine);
+// console.log(offer.magazine?.getTitle());
+// console.log(offer.book.getTitle?.());
+// console.log(offer.book.authors?.[0]);
+
+// Task 04.05
+type BookProperties = keyof Book;
+
+const getProperty = (book: Book, prop: BookProperties | 'isbn'): any => {
+    const value = book[prop];
+    return typeof value === 'function' ? value.name : value;
+};
+// console.log(getProperty(myBook, 'title'));
+// console.log(getProperty(myBook, 'markDamaged'));
+// console.log(getProperty(myBook, 'isbn'));
+
+// Task 05.01
+abstract class ReferenceItem {
+    // title: string;
+    // year: number;
+
+    // constructor(newTitle: string, newYear: number) {
+    //     console.log('Creating a new ReferenceItem...');
+    //     this.title = newTitle;
+    //     this.year = newYear;
+    // }
+    private _publisher: string;
+
+    #id: number;
+
+    get publisher(): string {
+        return this._publisher.toUpperCase();
+    }
+
+    set publisher(newPublisher: string) {
+        this._publisher = newPublisher;
+    }
+
+    static department: string = 'Research dep.';
+
+    constructor(id: number, public title: string, protected year: number) {
+        console.log('Creating a new ReferenceItem...');
+        this.#id = id;
+    }
+
+    printItem(): void{
+        console.log(`${this.title} was published in ${this.year}`);
+        console.log(ReferenceItem.department);
+        console.log(Object.getPrototypeOf(this).constructor.department);
+    }
+
+    getId(): number {
+        return this.#id;
+    }
+
+    abstract printCitation(): void;
+}
+
+// const ref = new ReferenceItem(1,'Typescript', 2023);
+// ref.printItem();
+// ref.publisher = ('abc');
+// console.log(ref);
+// console.log(ref.getId());
+
+// Task 05.02
+class Encyclopedia extends ReferenceItem {
+    constructor(id: number, title: string, year: number, public edition: number) {
+        super(id, title, year);
+    }
+
+    override printItem(): void {
+        super.printItem();
+        console.log(`Edition: ${this.edition} (${this.year})`);
+    }
+
+    printCitation(): void {
+        console.log(`${this.title} - ${this.year}`);
+    };
+}
+
+const refBook = new Encyclopedia(1, 'Typescript', 2023, 2);
+// console.log(refBook);
+// refBook.printItem();
+refBook.printCitation();
