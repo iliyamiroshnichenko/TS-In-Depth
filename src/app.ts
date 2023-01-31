@@ -107,7 +107,7 @@ const createCustomer = (name: string, age?: number, city?: string): void => {
 // console.log(getBookTitlesByCategory());
 // logFirstAvailable();
 // Task 03.02.04
-const getBookByID = (idToFind: Book['id']): Book | undefined => {
+const getBookByID = (idToFind: Book['id']): BookOrUndefined => {
     const books = getAllBooks();
     return books.find(({id}) => id === idToFind);
 };
@@ -212,12 +212,12 @@ const favoriteAuthor: Author = {
     numBooksPublished: 1
 };
 
-const favoriteLibrarian: Librarian = {
-    name: 'Marina',
-    email: 'marinaExample@.com',
-    department: 'Classical',
-    assistCustomer: null,
-};
+// const favoriteLibrarian: Librarian = {
+//     name: 'Marina',
+//     email: 'marinaExample@.com',
+//     department: 'Classical',
+//     assistCustomer: null,
+// };
 
 // Task 04.04
 const offer: any = {
@@ -309,3 +309,47 @@ const refBook = new Encyclopedia(1, 'Typescript', 2023, 2);
 // console.log(refBook);
 // refBook.printItem();
 refBook.printCitation();
+
+// Task 05.04
+class UniversityLibrarian implements Librarian {
+    name: string;
+    email: string;
+    department: string;
+    assistCustomer(custName: string, bookTitle: string): void {
+        console.log(`${this.name} is assisting ${custName} with the book ${bookTitle}`);
+    };
+
+}
+
+const favoriteLibrarian: Librarian = new UniversityLibrarian();
+favoriteLibrarian.name = 'Illia';
+favoriteLibrarian.assistCustomer('Marina', 'Learn Typescript');
+
+// Task 05.05
+type PersonBook = Book & Person;
+
+const personBook: PersonBook = {
+    author: 'Illia',
+    available: false,
+    category: Category.HTML,
+    email: 'illia@example.com',
+    id: 1,
+    title: 'Some title',
+    name: 'Illia'
+};
+
+type BookOrUndefined = Book | undefined;
+
+interface TOptions {
+    duration?: number;
+    speed?: number;
+}
+
+const setDefaultConfig = (options: TOptions): TOptions => {
+    options.duration ??= 200;
+    options.speed ??= 200;
+    return options;
+};
+
+const config: TOptions = {duration: 100};
+console.log(setDefaultConfig(config));
