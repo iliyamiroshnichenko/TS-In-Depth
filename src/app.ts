@@ -1,6 +1,6 @@
 import { Book, Logger, Author, Librarian, TOptions } from './interfaces';
 import { PersonBook } from './types';
-import {UL, RefBook} from './classes';
+import {UL, RefBook, Library} from './classes';
 import { createCustomerID, getBookTitlesByCategory, printRefBook } from './functions';
 import { Category } from './enums';
 
@@ -176,19 +176,23 @@ favoriteLibrarian.name = 'Illia';
 // printRefBook(new UL.UniversityLibrarian());
 
 // Task 06.05
-const flag = false;
+// const flag = false;
 
-if (flag) {
-    import('./classes').then(obj => {
-        const reader = new obj.Reader();
-        reader.name = 'Anna';
-        console.log(reader);
-    }).catch(err => console.error(err));
-}
+// if (flag) {
+//     import('./classes').then(obj => {
+//         const reader = new obj.Reader();
+//         reader.name = 'Anna';
+//         console.log(reader);
+//     }).catch(err => console.error(err));
+// }
 
-if (!flag) {
-    const obj = await import('./classes');
-    const reader = new obj.Reader();
-    reader.name = 'Anna';
-    console.log(reader);
-}
+// if (!flag) {
+//     const obj = await import('./classes');
+//     const reader = new obj.Reader();
+//     reader.name = 'Anna';
+//     console.log(reader);
+// }
+
+// Task 06.06
+// let lib: Library = new Library();
+let lib: Library = {address: '', id: 1, name: 'Anna'};
