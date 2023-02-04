@@ -1,7 +1,7 @@
 import { Book, Logger, Author, Librarian, TOptions } from './interfaces';
 import { PersonBook } from './types';
-import {UniversityLibrarian, ReferenceItem} from './classes';
-import { createCustomerID, getAllBooks, getBookTitlesByCategory } from './functions';
+import {UL, RefBook} from './classes';
+import { createCustomerID, getBookTitlesByCategory, printRefBook } from './functions';
 import { Category } from './enums';
 
 showHello('greeting', 'TypeScript');
@@ -141,22 +141,9 @@ const logDamage: Logger = (reason: string): void => {
 // console.log(ref.getId());
 
 // Task 05.02
-class Encyclopedia extends ReferenceItem {
-    constructor(id: number, title: string, year: number, public edition: number) {
-        super(id, title, year);
-    }
 
-    override printItem(): void {
-        super.printItem();
-        console.log(`Edition: ${this.edition} (${this.year})`);
-    }
 
-    printCitation(): void {
-        console.log(`${this.title} - ${this.year}`);
-    };
-}
-
-const refBook = new Encyclopedia(1, 'Typescript', 2023, 2);
+// const refBook = new RefBook(1, 'Typescript', 2023, 2);
 // console.log(refBook);
 // refBook.printItem();
 // refBook.printCitation();
@@ -164,22 +151,26 @@ const refBook = new Encyclopedia(1, 'Typescript', 2023, 2);
 // Task 05.04
 
 
-const favoriteLibrarian: Librarian = new UniversityLibrarian();
+const favoriteLibrarian: Librarian = new UL.UniversityLibrarian();
 favoriteLibrarian.name = 'Illia';
 // favoriteLibrarian.assistCustomer('Marina', 'Learn Typescript');
 
 // Task 05.05
-const personBook: PersonBook = {
-    author: 'Illia',
-    available: false,
-    category: Category.HTML,
-    email: 'illia@example.com',
-    id: 1,
-    title: 'Some title',
-    name: 'Illia'
-};
+// const personBook: PersonBook = {
+//     author: 'Illia',
+//     available: false,
+//     category: Category.HTML,
+//     email: 'illia@example.com',
+//     id: 1,
+//     title: 'Some title',
+//     name: 'Illia'
+// };
 
 
 
-const config: TOptions = {duration: 100};
+// const config: TOptions = {duration: 100};
 // console.log(setDefaultConfig(config));
+
+// Task 06.03
+// printRefBook(new RefBook(1, 'Typescript', 2023, 2));
+// printRefBook(new UL.UniversityLibrarian());

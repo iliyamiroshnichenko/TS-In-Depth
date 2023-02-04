@@ -1,6 +1,7 @@
 import { Category } from './enums';
 import { Book, TOptions } from './interfaces';
 import { BookProperties, BookOrUndefined, myTuple } from './types';
+import RefBook from './classes/encyclopedia';
 
 /* eslint-disable no-redeclare */
 export const getAllBooks = (): readonly Book[] => {
@@ -83,9 +84,20 @@ export function assertStringValue (value: any): asserts value is string  {
     }
 };
 
+export function assertRefBookInstance(condition: any): asserts condition {
+    if (!condition) {
+        throw new Error('It is not an instance of RefBook');
+    }
+}
+
 export const bookTitleTransform = (title: any): string => {
     assertStringValue(title);
     return [...title].reverse().join('');
+};
+
+export const printRefBook = (data: any): void => {
+    assertRefBookInstance(data instanceof RefBook);
+    data.printItem();
 };
 
 export const printBook = (book: Book): void => {
