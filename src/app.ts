@@ -174,3 +174,21 @@ favoriteLibrarian.name = 'Illia';
 // Task 06.03
 // printRefBook(new RefBook(1, 'Typescript', 2023, 2));
 // printRefBook(new UL.UniversityLibrarian());
+
+// Task 06.05
+const flag = false;
+
+if (flag) {
+    import('./classes').then(obj => {
+        const reader = new obj.Reader();
+        reader.name = 'Anna';
+        console.log(reader);
+    }).catch(err => console.error(err));
+}
+
+if (!flag) {
+    const obj = await import('./classes');
+    const reader = new obj.Reader();
+    reader.name = 'Anna';
+    console.log(reader);
+}
