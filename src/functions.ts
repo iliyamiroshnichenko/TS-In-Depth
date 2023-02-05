@@ -114,3 +114,7 @@ export const setDefaultConfig = (options: TOptions): TOptions => {
     options.speed ??= 200;
     return options;
 };
+
+export const purge = <T>(inventory: T[]): T[] => {
+    return inventory.slice(2);
+};

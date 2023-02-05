@@ -1,7 +1,7 @@
 import { Book, Logger, Author, Librarian, TOptions } from './interfaces';
 import { PersonBook } from './types';
 import {UL, RefBook, Library} from './classes';
-import { createCustomerID, getBookTitlesByCategory, printRefBook } from './functions';
+import { createCustomerID, getBookTitlesByCategory, printRefBook, purge } from './functions';
 import { Category } from './enums';
 
 showHello('greeting', 'TypeScript');
@@ -195,4 +195,18 @@ favoriteLibrarian.name = 'Illia';
 
 // Task 06.06
 // let lib: Library = new Library();
-let lib: Library = {address: '', id: 1, name: 'Anna'};
+// let lib: Library = {address: '', id: 1, name: 'Anna'};
+
+// Task 07.01
+const inventory: Book[] = [
+    { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.SOFTWARE },
+    { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.SOFTWARE },
+    { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.SOFTWARE },
+    { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.SOFTWARE }
+];
+const r1: Book[] = purge<Book>(inventory);
+console.log(r1);
+
+const r2: number[] = purge<number>([1,2,3,4]);
+console.log(r2);
+

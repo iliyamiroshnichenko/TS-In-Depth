@@ -3,7 +3,8 @@ enum Category {
     CSS = 'CSS',
     HTML = 'HTML',
     TYPESCRIPT = 'TypeScript',
-    ANGULAR = 'Angular'
+    ANGULAR = 'Angular',
+    SOFTWARE = 'Software'
 }
 
 export {Category};
