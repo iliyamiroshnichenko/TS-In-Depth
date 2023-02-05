@@ -118,3 +118,9 @@ export const setDefaultConfig = (options: TOptions): TOptions => {
 export const purge = <T>(inventory: T[]): T[] => {
     return inventory.slice(2);
 };
+
+
+export const getObjectProperty = <TObject extends object, TKey extends keyof TObject>(obj: TObject, prop: TKey): TObject[TKey] | string => {
+    const value = obj[prop];
+    return typeof value === 'function' ? value.name : value;
+};

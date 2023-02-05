@@ -1,7 +1,7 @@
 import { Book, Logger, Author, Librarian, TOptions, Magazine } from './interfaces';
 import { PersonBook } from './types';
 import {UL, RefBook, Library, Shelf} from './classes';
-import { createCustomerID, getBookTitlesByCategory, printRefBook, purge } from './functions';
+import { createCustomerID, getBookTitlesByCategory, getObjectProperty, printRefBook, purge } from './functions';
 import { Category } from './enums';
 
 showHello('greeting', 'TypeScript');
@@ -213,7 +213,7 @@ const inventory: Book[] = [
 // Task 07.02
 const bookShelf = new Shelf<Book>();
 inventory.forEach(book => bookShelf.add(book));
-console.log(bookShelf.getFirst());
+// console.log(bookShelf.getFirst());
 
 const magazines: Magazine[] = [
     { title: 'Programming Language Monthly', publisher: 'Code Mags' },
@@ -223,4 +223,10 @@ const magazines: Magazine[] = [
 
 const magazineShelf = new Shelf<Magazine>();
 magazines.forEach(magazine => magazineShelf.add(magazine));
-console.log(magazineShelf.getFirst());
+// console.log(magazineShelf.getFirst());
+// Task 07.03
+magazineShelf.printTitles();
+console.log(magazineShelf.find('Five Points'));
+
+console.log(getObjectProperty(magazines[0], 'title'));
+console.log(getObjectProperty(inventory[0], 'author'));
