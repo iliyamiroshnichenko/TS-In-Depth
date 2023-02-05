@@ -1,6 +1,6 @@
-import { Book, Logger, Author, Librarian, TOptions } from './interfaces';
+import { Book, Logger, Author, Librarian, TOptions, Magazine } from './interfaces';
 import { PersonBook } from './types';
-import {UL, RefBook, Library} from './classes';
+import {UL, RefBook, Library, Shelf} from './classes';
 import { createCustomerID, getBookTitlesByCategory, printRefBook, purge } from './functions';
 import { Category } from './enums';
 
@@ -204,9 +204,23 @@ const inventory: Book[] = [
     { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.SOFTWARE },
     { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.SOFTWARE }
 ];
-const r1: Book[] = purge<Book>(inventory);
-console.log(r1);
+// const r1: Book[] = purge<Book>(inventory);
+// console.log(r1);
 
-const r2: number[] = purge<number>([1,2,3,4]);
-console.log(r2);
+// const r2: number[] = purge<number>([1,2,3,4]);
+// console.log(r2);
 
+// Task 07.02
+const bookShelf = new Shelf<Book>();
+inventory.forEach(book => bookShelf.add(book));
+console.log(bookShelf.getFirst());
+
+const magazines: Magazine[] = [
+    { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+    { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+    { title: 'Five Points', publisher: 'GSU' }
+];
+
+const magazineShelf = new Shelf<Magazine>();
+magazines.forEach(magazine => magazineShelf.add(magazine));
+console.log(magazineShelf.getFirst());
