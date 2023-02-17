@@ -25,7 +25,7 @@ function showHello(divName: string, name: string) {
 // logFirstAvailable(allBooks);
 // Task 02.01.6
 // Task 02.01.7
-const jsBooks = getBookTitlesByCategory(Category.JAVASCRIPT);
+// const jsBooks = getBookTitlesByCategory(Category.JAVASCRIPT);
 // logBookTitles(jsBooks);
 // Task 02.01.8
 
@@ -37,12 +37,12 @@ const jsBooks = getBookTitlesByCategory(Category.JAVASCRIPT);
 
 // Task 03.01.01
 // Task 03.01.02
-let myID: string = createCustomerID('Ann', 10);
+// let myID: string = createCustomerID('Ann', 10);
 // console.log(myID);
 // Task 03.01.03
-let idGenerator: (name: string, id: number) => string;
-idGenerator = (name: string, id: number) => `${id}-${name}`;
-idGenerator = createCustomerID;
+// let idGenerator: (name: string, id: number) => string;
+// idGenerator = (name: string, id: number) => `${id}-${name}`;
+// idGenerator = createCustomerID;
 // console.log(idGenerator('Ann', 10));
 
 // Task 03.02.01
@@ -75,18 +75,18 @@ idGenerator = createCustomerID;
 
 
 
-const myBook: Book= {
-    id: 5,
-    title: 'Colors, Backgrounds, and Gradients',
-    author: 'Eric A. Meyer',
-    available: true,
-    category: Category.CSS,
-    pages: 200,
-    markDamaged: (reason: string): void => {
-        console.log(`Damaged: ${reason}`);
-    }
+// const myBook: Book= {
+//     id: 5,
+//     title: 'Colors, Backgrounds, and Gradients',
+//     author: 'Eric A. Meyer',
+//     available: true,
+//     category: Category.CSS,
+//     pages: 200,
+//     markDamaged: (reason: string): void => {
+//         console.log(`Damaged: ${reason}`);
+//     }
 
-};
+// };
 
 // printBook(myBook);
 // myBook.markDamaged('missing back cover');
@@ -98,11 +98,11 @@ const myBook: Book= {
 
 // Task 04.03
 
-const favoriteAuthor: Author = {
-    name: 'Illia',
-    email: 'illiaExample@.com',
-    numBooksPublished: 1
-};
+// const favoriteAuthor: Author = {
+//     name: 'Illia',
+//     email: 'illiaExample@.com',
+//     numBooksPublished: 1
+// };
 
 // const favoriteLibrarian: Librarian = {
 //     name: 'Marina',
@@ -112,11 +112,11 @@ const favoriteAuthor: Author = {
 // };
 
 // Task 04.04
-const offer: any = {
-    book: {
-        title: 'Essential TypeScript',
-    },
-};
+// const offer: any = {
+//     book: {
+//         title: 'Essential TypeScript',
+//     },
+// };
 // console.log(offer.magazine);
 // console.log(offer.magazine?.getTitle());
 // console.log(offer.book.getTitle?.());
@@ -124,9 +124,9 @@ const offer: any = {
 
 // Task 04.05
 
-const logDamage: Logger = (reason: string): void => {
-    console.log(`Damaged: ${reason}`);
-};
+// const logDamage: Logger = (reason: string): void => {
+//     console.log(`Damaged: ${reason}`);
+// };
 // console.log(getProperty(myBook, 'title'));
 // console.log(getProperty(myBook, 'markDamaged'));
 // console.log(getProperty(myBook, 'isbn'));
@@ -151,8 +151,8 @@ const logDamage: Logger = (reason: string): void => {
 // Task 05.04
 
 
-const favoriteLibrarian: Librarian = new UL.UniversityLibrarian();
-favoriteLibrarian.name = 'Illia';
+// const favoriteLibrarian: Librarian = new UL.UniversityLibrarian();
+// favoriteLibrarian.name = 'Illia';
 // favoriteLibrarian.assistCustomer('Marina', 'Learn Typescript');
 
 // Task 05.05
@@ -198,12 +198,12 @@ favoriteLibrarian.name = 'Illia';
 // let lib: Library = {address: '', id: 1, name: 'Anna'};
 
 // Task 07.01
-const inventory: Book[] = [
-    { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.SOFTWARE },
-    { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.SOFTWARE },
-    { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.SOFTWARE },
-    { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.SOFTWARE }
-];
+// const inventory: Book[] = [
+//     { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.SOFTWARE },
+//     { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.SOFTWARE },
+//     { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.SOFTWARE },
+//     { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.SOFTWARE }
+// ];
 // const r1: Book[] = purge<Book>(inventory);
 // console.log(r1);
 
@@ -211,18 +211,18 @@ const inventory: Book[] = [
 // console.log(r2);
 
 // Task 07.02
-const bookShelf = new Shelf<Book>();
-inventory.forEach(book => bookShelf.add(book));
+// const bookShelf = new Shelf<Book>();
+// inventory.forEach(book => bookShelf.add(book));
 // console.log(bookShelf.getFirst());
 
-const magazines: Magazine[] = [
-    { title: 'Programming Language Monthly', publisher: 'Code Mags' },
-    { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
-    { title: 'Five Points', publisher: 'GSU' }
-];
+// const magazines: Magazine[] = [
+//     { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+//     { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+//     { title: 'Five Points', publisher: 'GSU' }
+// ];
 
-const magazineShelf = new Shelf<Magazine>();
-magazines.forEach(magazine => magazineShelf.add(magazine));
+// const magazineShelf = new Shelf<Magazine>();
+// magazines.forEach(magazine => magazineShelf.add(magazine));
 // console.log(magazineShelf.getFirst());
 // Task 07.03
 // magazineShelf.printTitles();
@@ -232,18 +232,30 @@ magazines.forEach(magazine => magazineShelf.add(magazine));
 // console.log(getObjectProperty(inventory[0], 'author'));
 
 // Task 07.04
-const bookRequiredFields: BookRequiredFields = {
-    id: 1,
-    author: 'Anna',
-    available: false,
-    category: Category.ANGULAR,
-    markDamaged: null,
-    pages: 100,
-    title: 'Unknown',
-};
+// const bookRequiredFields: BookRequiredFields = {
+//     id: 1,
+//     author: 'Anna',
+//     available: false,
+//     category: Category.ANGULAR,
+//     markDamaged: null,
+//     pages: 100,
+//     title: 'Unknown',
+// };
 
-const updatedBook: UpdatedBook = {
-    id: 1
-};
-let params: Parameters<СreateCustomerFunctionType> = ['Anna'];
-createCustomer(...params);
+// const updatedBook: UpdatedBook = {
+//     id: 1
+// };
+// let params: Parameters<СreateCustomerFunctionType> = ['Anna'];
+// createCustomer(...params);
+
+// Task 08.01, 08.02
+const ul = new UL.UniversityLibrarian();
+// UL.UniversityLibrarian['a'] = 78;
+// Object.getPrototypeOf(ul)['a'] = 78;
+console.log(ul);
+ul.name = 'Anna';
+ul['printLibrarian']();
+
+(ul as UL.UniversityLibrarian & pl).printLibrarian();
+
+type pl = {printLibrarian: () => void};
