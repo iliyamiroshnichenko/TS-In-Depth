@@ -248,14 +248,21 @@ function showHello(divName: string, name: string) {
 // let params: Parameters<СreateCustomerFunctionType> = ['Anna'];
 // createCustomer(...params);
 
-// Task 08.01, 08.02
-const ul = new UL.UniversityLibrarian();
+// Task 08.01, 08.02, 08.03
+// const ul = new UL.UniversityLibrarian();
 // UL.UniversityLibrarian['a'] = 78;
 // Object.getPrototypeOf(ul)['a'] = 78;
-console.log(ul);
-ul.name = 'Anna';
-ul['printLibrarian']();
+// console.log(ul);
+// ul.name = 'Anna';
+// ul['printLibrarian']();
 
-(ul as UL.UniversityLibrarian & pl).printLibrarian();
+// (ul as UL.UniversityLibrarian & pl).printLibrarian();
 
-type pl = {printLibrarian: () => void};
+// type pl = {printLibrarian: () => void};
+
+// Object.getPrototypeOf(ul).assistFaculty = null;
+// Object.getPrototypeOf(ul).teachCommunity = null;
+
+// Task 08.04
+const ref = new RefBook(1, 'Typescript', 2023, 2);
+ref.printItem();

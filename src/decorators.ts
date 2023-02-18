@@ -20,3 +20,24 @@ export const logger = <TFunction extends Function>(constructor: TFunction): TFun
 
     return newConstructor as TFunction;
 };
+
+export const writable = (isWritable: boolean) => {
+    return function (target: object | Function, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor{
+        descriptor.writable = isWritable;
+        return descriptor;
+    };
+};
+
+export const timeout = (ms: number) => {
+    return function (target: object | Function, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor{
+        const originalMethod = descriptor.value;
+        descriptor.value = function (...args: Parameters<typeof originalMethod>) {
+            if (window.confirm('Are you sure?')) {
+                setTimeout(() => {
+                    originalMethod.apply(this, args);
+                }, ms);
+            }
+        };
+        return descriptor;
+    };
+};
