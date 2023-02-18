@@ -267,8 +267,8 @@ function showHello(divName: string, name: string) {
 // const ref = new RefBook(1, 'Typescript', 2023, 2);
 // ref.printItem();
 
-// Task 08.05
-const ul = new UL.UniversityLibrarian();
-ul.name = 'Anna';
-ul.assistCustomer('Boris', 'Learn TS');
-console.log(ul);
+// Task 08.05, 08.06
+// const ul = new UL.UniversityLibrarian();
+// ul.name = 'Anna';
+// ul.assistCustomer('Boris', 'Learn TS');
+// console.log(ul);

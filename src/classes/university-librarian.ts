@@ -1,10 +1,10 @@
-import { logger, logMethod, logParameter, sealed, writable } from '../decorators';
+import { format, logger, logMethod, logParameter, sealed, writable } from '../decorators';
 import * as Interfaces from '../interfaces';
 
 // @sealed('UniversityLibrarian')
 // @logger
 class UniversityLibrarian implements Interfaces.Librarian {
-    name: string;
+    @format() name: string;
     email: string;
     department: string;
 
@@ -12,7 +12,7 @@ class UniversityLibrarian implements Interfaces.Librarian {
     //     console.log('Native constructor');
     // }
 
-    @logMethod
+    // @logMethod
     assistCustomer(@logParameter custName: string, @logParameter bookTitle: string): void {
         console.log(`${this.name} is assisting ${custName} with the book ${bookTitle}`);
     };
