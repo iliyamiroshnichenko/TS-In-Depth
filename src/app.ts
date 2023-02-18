@@ -264,5 +264,11 @@ function showHello(divName: string, name: string) {
 // Object.getPrototypeOf(ul).teachCommunity = null;
 
 // Task 08.04
-const ref = new RefBook(1, 'Typescript', 2023, 2);
-ref.printItem();
+// const ref = new RefBook(1, 'Typescript', 2023, 2);
+// ref.printItem();
+
+// Task 08.05
+const ul = new UL.UniversityLibrarian();
+ul.name = 'Anna';
+ul.assistCustomer('Boris', 'Learn TS');
+console.log(ul);

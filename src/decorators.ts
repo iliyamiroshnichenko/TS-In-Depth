@@ -41,3 +41,32 @@ export const timeout = (ms: number) => {
         return descriptor;
     };
 };
+
+export const logParameter = (target: object | Function, methodName: string, index: number) => {
+    const key = `${methodName}_decor_params_indexes`;
+    const proto = typeof target === 'function' ? target.prototype : target;
+
+    (proto[key] ??= []).push(index);
+};
+
+export const logMethod = (target: object | Function, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor => {
+    const originalMethod = descriptor.value;
+
+    descriptor.value = function (...args: any[]): ReturnType<typeof originalMethod> {
+        const key = `${methodName}_decor_params_indexes`;
+        const proto = typeof target === 'function' ? target.prototype : target;
+        const indexes = proto[key];
+
+        if (Array.isArray(indexes)) {
+            args.forEach((arg, index) => {
+                if (indexes.includes(index)) {
+                    console.log(`Method: ${methodName}, ParamIndex: ${index}, ParamValue: ${arg}`);
+                }
+            });
+        }
+
+        return originalMethod.apply(this, args);
+    };
+
+    return descriptor;
+};

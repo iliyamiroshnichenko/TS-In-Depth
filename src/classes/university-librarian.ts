@@ -1,27 +1,28 @@
-import { logger, sealed, writable } from '../decorators';
+import { logger, logMethod, logParameter, sealed, writable } from '../decorators';
 import * as Interfaces from '../interfaces';
 
 // @sealed('UniversityLibrarian')
-@logger
+// @logger
 class UniversityLibrarian implements Interfaces.Librarian {
     name: string;
     email: string;
     department: string;
 
-    constructor() {
-        console.log('Native constructor');
-    }
+    // constructor() {
+    //     console.log('Native constructor');
+    // }
 
-    assistCustomer(custName: string, bookTitle: string): void {
+    @logMethod
+    assistCustomer(@logParameter custName: string, @logParameter bookTitle: string): void {
         console.log(`${this.name} is assisting ${custName} with the book ${bookTitle}`);
     };
 
-    @writable(true)
+    // @writable(true)
     assistFaculty(): void {
         console.log('Assisting faculty');
     }
 
-    @writable(false)
+    // @writable(false)
     teachCommunity(): void {
         console.log('Teaching community');
     }
