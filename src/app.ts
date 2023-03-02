@@ -272,3 +272,8 @@ function showHello(divName: string, name: string) {
 // ul.name = 'Anna';
 // ul.assistCustomer('Boris', 'Learn TS');
 // console.log(ul);
+
+// Task 08.07
+const ref = new RefBook(1, 'Typescript', 2023, 2);
+ref.copies = 10;
+console.log(ref);

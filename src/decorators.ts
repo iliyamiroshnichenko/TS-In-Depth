@@ -111,3 +111,18 @@ export function format(pref: string = 'Mr./Mrs.') {
         makeProperty(target, propName, value => `${pref} ${value}`, value => value);
     };
 };
+
+export function positiveInteger(target: object | Function, propertyName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+    const originalSet = descriptor.set;
+    descriptor.set = function (value: number) {
+        if (value < 1 || !Number.isInteger(value)) {
+            throw new Error('Invalid value');
+        }
+        if (originalSet) {
+            originalSet.call(this, value);
+        } else {
+            this[propertyName] = value;
+        }
+    };
+    return descriptor;
+}
