@@ -1,7 +1,7 @@
 import { Book, Logger, Author, Librarian, TOptions, Magazine } from './interfaces';
 import { BookRequiredFields, PersonBook, UpdatedBook, СreateCustomerFunctionType } from './types';
 import {UL, RefBook, Library, Shelf} from './classes';
-import { createCustomer, createCustomerID, getBookTitlesByCategory, getObjectProperty, printRefBook, purge } from './functions';
+import { createCustomer, createCustomerID, getBooksByCategory, getBookTitlesByCategory, getObjectProperty, logCategorySearch, printRefBook, purge } from './functions';
 import { Category } from './enums';
 
 showHello('greeting', 'TypeScript');
@@ -274,6 +274,13 @@ function showHello(divName: string, name: string) {
 // console.log(ul);
 
 // Task 08.07
-const ref = new RefBook(1, 'Typescript', 2023, 2);
-ref.copies = 10;
-console.log(ref);
+// const ref = new RefBook(1, 'Typescript', 2023, 2);
+// ref.copies = 10;
+// console.log(ref);
+
+// Task 09.01
+console.log('Begin');
+getBooksByCategory(Category.JAVASCRIPT, logCategorySearch);
+getBooksByCategory(Category.SOFTWARE, logCategorySearch);
+
+console.log('End');

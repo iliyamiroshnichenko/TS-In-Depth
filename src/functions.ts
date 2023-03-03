@@ -1,5 +1,5 @@
 import { Category } from './enums';
-import { Book, TOptions } from './interfaces';
+import { Book, Callback, LibMgrCallback, TOptions } from './interfaces';
 import { BookProperties, BookOrUndefined, myTuple } from './types';
 import RefBook from './classes/encyclopedia';
 
@@ -123,4 +123,29 @@ export const purge = <T>(inventory: T[]): T[] => {
 export const getObjectProperty = <TObject extends object, TKey extends keyof TObject>(obj: TObject, prop: TKey): TObject[TKey] | string => {
     const value = obj[prop];
     return typeof value === 'function' ? value.name : value;
+};
+
+
+// export const getBooksByCategory = (category: Category, callback: LibMgrCallback): void => {
+export const getBooksByCategory = (category: Category, callback: Callback<string[]>): void => {
+    setTimeout(() => {
+        try {
+            const titles = getBookTitlesByCategory(category);
+            if (titles.length > 0) {
+                callback(null, titles);
+            } else {
+                throw new Error('No books found');
+            }
+        } catch (error) {
+            callback(error, null);
+        }
+    }, 2000);
+};
+
+export const logCategorySearch = (err: Error | null, titles: string[] | null): void => {
+    if (err) {
+        console.log(err.message);
+    } else {
+        console.log(titles);
+    }
 };
