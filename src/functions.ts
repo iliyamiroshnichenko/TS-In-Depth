@@ -162,3 +162,8 @@ export const getBooksByCategoryPromise = (category: Category): Promise<string[]>
         }, 2000);
     });
 };
+
+export const logSearchResults = async (category: Category) => {
+    const results: Awaited<Promise<string[]>> = await getBooksByCategoryPromise(category);
+    console.log(results);
+};

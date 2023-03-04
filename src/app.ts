@@ -1,7 +1,7 @@
 import { Book, Logger, Author, Librarian, TOptions, Magazine } from './interfaces';
 import { BookRequiredFields, PersonBook, UpdatedBook, СreateCustomerFunctionType } from './types';
 import {UL, RefBook, Library, Shelf} from './classes';
-import { createCustomer, createCustomerID, getBooksByCategory, getBooksByCategoryPromise, getBookTitlesByCategory, getObjectProperty, logCategorySearch, printRefBook, purge } from './functions';
+import { createCustomer, createCustomerID, getBooksByCategory, getBooksByCategoryPromise, getBookTitlesByCategory, getObjectProperty, logCategorySearch, logSearchResults, printRefBook, purge } from './functions';
 import { Category } from './enums';
 
 showHello('greeting', 'TypeScript');
@@ -286,11 +286,17 @@ function showHello(divName: string, name: string) {
 // console.log('End');
 
 // Task 09.02
-console.log('Begin');
-getBooksByCategoryPromise(Category.JAVASCRIPT).then(titles => {
-    console.log(titles);
-    return Promise.resolve(titles.length + 1) ;
-}).then(console.log).catch(console.log);
-getBooksByCategoryPromise(Category.SOFTWARE).then(console.log).catch(console.log);
+// console.log('Begin');
+// getBooksByCategoryPromise(Category.JAVASCRIPT).then(titles => {
+//     console.log(titles);
+//     return Promise.resolve(titles.length + 1) ;
+// }).then(console.log).catch(console.log);
+// getBooksByCategoryPromise(Category.SOFTWARE).then(console.log).catch(console.log);
 
+// console.log('End');
+
+// Task 09.03
+console.log('Begin');
+logSearchResults(Category.JAVASCRIPT);
+logSearchResults(Category.SOFTWARE).catch(err => console.log(err));
 console.log('End');
