@@ -149,3 +149,16 @@ export const logCategorySearch = (err: Error | null, titles: string[] | null): v
         console.log(titles);
     }
 };
+
+export const getBooksByCategoryPromise = (category: Category): Promise<string[]> => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const titles = getBookTitlesByCategory(category);
+            if (titles.length > 0) {
+                resolve(titles);
+            } else {
+                reject('No books found');
+            }
+        }, 2000);
+    });
+};
